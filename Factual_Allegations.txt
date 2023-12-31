@@ -1,0 +1,17 @@
+plaintiffName = "Michael Gruen"
+defendantNames = ["Jeremiah Reynolds", "Bryce Hall", "Joshua Richards", "Chris Sawtelle", "Good Kid LLC", "Esteban Di Masi", "Crosscheck Studios, LLC"]
+
+factualAllegations = [
+    {"paragraphNumber": 1, "text": "Plaintiff, Michael Gruen, founded Crosscheck Studios, LLC with great personal and financial investment, bringing ingenuity and innovation to revolutionize the digital content creation industry."},
+    {"paragraphNumber": 2, "text": "Despite being a driving force behind the company's initial success, Plaintiff was systematically pushed out of decision-making processes and stripped of his equity stake through duplicitous actions orchestrated by the Defendants."},
+    # ... (Include all other factual allegations following the same format)
+    {"paragraphNumber": 37, "text": "In light of the Defendants' egregious conduct, Plaintiff seeks compensatory and punitive damages, an accounting of the company's financial transactions, rescission of the unlawful equity dilution, removal of Defendants as managers, disgorgement of profits acquired through wrongful actions, payment of attorneys' fees and costs, and any other relief the Court deems just and proper."}
+]
+
+def formatAllegation(allegation):
+    return f"{allegation['paragraphNumber']}. {allegation['text']}"
+
+with open("Factual_Allegations.txt", "w") as file:
+    file.write(f"Factual Allegations\n\n")
+    for allegation in factualAllegations:
+        file.write(formatAllegation(allegation) + "\n\n")

@@ -1,0 +1,22 @@
+plaintiffName = "Michael Gruen"
+defendantNames = ["Bryce Hall"]
+ComplaintTitle = "Complaint for Defamation"
+CountIIITitle = "COUNT III: DEFAMATION"
+
+def formatAllegation(allegation):
+    return f"{allegation['paragraphNumber']}. {allegation['text']}"
+
+defamationAllegations = [
+    {"paragraphNumber": 1, "text": "Plaintiff incorporates by reference the allegations in paragraphs 1 through 56 as if fully set forth herein."},
+    {"paragraphNumber": 2, "text": "Defendant Bryce Hall engaged in a calculated and malicious campaign of defamation against Plaintiff, utilizing various social media platforms and public appearances to spread false and damaging statements."},
+    {"paragraphNumber": 3, "text": "Defendant Bryce Hall's defamatory statements included, but were not limited to, falsely accusing Plaintiff of walking around the home office in his underpants, equivalent to shorts, and attempting to fire an employee without permission during a private moment of frustration."},
+    {"paragraphNumber": 4, "text": "These false statements were intentionally made to harm Plaintiff's personal and professional reputation, tarnish his image in the eyes of the public and industry peers, and undermine his standing within the entertainment industry."},
+    {"paragraphNumber": 5, "text": "Plaintiff has endured severe harm to his reputation, emotional distress, and economic losses as a direct result of Defendant Bryce Hall's defamatory actions."},
+    {"paragraphNumber": 6, "text": "Plaintiff seeks compensatory and punitive damages, as well as any other relief the Court deems just and proper, for the defamation committed by Defendant Bryce Hall."}
+]
+
+with open("Count_III_Defamation.txt", "w") as file:
+    file.write(f"{ComplaintTitle}\n\n")
+    file.write(f"{CountIIITitle}\n\n")
+    for allegation in defamationAllegations:
+        file.write(formatAllegation(allegation) + "\n")

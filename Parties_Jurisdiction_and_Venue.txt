@@ -1,0 +1,51 @@
+plaintiffName = "Michael Gruen"
+defendantNames = ["Jeremiah Reynolds", "Bryce Hall", "Joshua Richards", "Chris Sawtelle", "Good Kid LLC", "Esteban Di Masi", "Crosscheck Studios, LLC"]
+jurisdictionAmount = "jurisdictional minimum of this Court"
+venueLaws = ["California Code of Civil Procedure §395(a)", "California Code of Civil Procedure §395.5"]
+
+def formatPartyInformation(party):
+    return f"{party['role']}: {party['name']} is an individual residing in {party['residence']}.\n"
+
+def formatJurisdictionInformation(jurisdiction):
+    return f"The Court has jurisdiction over each of the Defendants because each defendant is domiciled in the State of California and the amount in controversy exceeds the {jurisdiction['amountInControversy']}.\n"
+
+def formatVenueInformation(venue):
+    venue_statements = [f"Venue is proper in this county under {law} as a contract was entered into and is to be performed in this county," for law in venue['properVenueBasis'][:-1]]
+    venue_statements.append(f"and {venue['properVenueBasis'][-1]} as Defendants conduct business in this county.")
+    return ' '.join(venue_statements) + "\n"
+
+# Parties
+parties_info = [
+    {"name": plaintiffName, "residence": "Palm Beach, Florida", "role": "Plaintiff"},
+    *[
+        {"name": defendant, "residence": "[State]", "role": "Defendant"}
+        for defendant in defendantNames[:-2]
+    ],
+    {"name": defendantNames[-2], "residence": "[State]", "role": "Defendant"},
+    {"name": defendantNames[-1], "residence": "[City, State]", "role": "Defendant"}
+]
+
+# Jurisdiction
+jurisdiction_info = {
+    "court": "State of California",
+    "jurisdictionBasis": "domicile",
+    "amountInControversy": jurisdictionAmount
+}
+
+# Venue
+venue_info = {
+    "properVenueBasis": venueLaws
+}
+
+# Generate the content for Parties_Jurisdiction_and_Venue.txt
+content = ComplaintTitle + "\n\n"
+content += PartiesSectionTitle + "\n\n"
+content += ''.join([formatPartyInformation(party) for party in parties_info])
+content += "\n" + JurisdictionSectionTitle + "\n\n"
+content += formatJurisdictionInformation(jurisdiction_info)
+content += "\n" + VenueSectionTitle + "\n\n"
+content += formatVenueInformation(venue_info)
+
+# Save the content to the file
+with open("Parties_Jurisdiction_and_Venue.txt", "w") as file:
+    file.write(content)
