@@ -1,0 +1,29 @@
+const plaintiffName = "Michael Gruen";
+const defendantNames = ["Jeremiah Reynolds", "Bryce Hall", "Joshua Richards", "Chris Sawtelle", "Good Kid LLC", "Esteban Di Masi", "Crosscheck Studios, LLC"];
+
+const CountIITitle = "COUNT II: FRAUDULENT INDUCEMENT";
+
+const countIIFraudulentInducement = [
+  "Plaintiff incorporates by reference the allegations in paragraphs 1 through 48 as if fully set forth herein.",
+  "Defendants, particularly Defendant Joshua Richards, knowingly made false representations and promises to induce Plaintiff to invest significant time, effort, and financial resources in the development and growth of Crosscheck Studios, LLC.",
+  "Defendant Joshua Richards explicitly assured Plaintiff that he would work tirelessly to promote the success of Crosscheck Studios, create opportunities for Plaintiff, and uphold the best interests of the company and its stakeholders.",
+  "These representations were materially false, as Defendants intended to mislead Plaintiff into believing that his investments of time, expertise, and resources would yield substantial returns and benefits.",
+  "In reliance upon these false representations, Plaintiff committed substantial financial resources, professional expertise, and personal effort to further the success of Crosscheck Studios.",
+  "Defendants' fraudulent inducement led to Plaintiff's significant detriment, including financial losses, damage to his professional reputation, and the erosion of his ownership and control in Crosscheck Studios.",
+  "Plaintiff has suffered substantial economic and non-economic damages as a direct result of Defendants' fraudulent conduct.",
+  "Plaintiff seeks compensatory and punitive damages, as well as any other relief the Court deems just and proper, for the fraudulent inducement committed by Defendants."
+];
+
+function formatCount(count) {
+  return count.map((line, index) => `${index + 1}. ${line}`).join('\n');
+}
+
+const formattedCountII = formatCount(countIIFraudulentInducement);
+
+const filePath = "Count_II_Fraudulent_Inducement.txt";
+const fs = require('fs');
+
+fs.writeFile(filePath, `${CountIITitle}\n\n${formattedCountII}`, function(err) {
+  if (err) throw err;
+  console.log(`The file ${filePath} has been saved!`);
+});
